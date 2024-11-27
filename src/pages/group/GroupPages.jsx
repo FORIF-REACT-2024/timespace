@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import TimeTable from "../table/GroupTable";
-import timeTableData from "../../testdataset/testdata.json"; // JSON 파일 import
 import processData from "./processData"; // processData 함수 import
 import GroupFriendList from "./GroupFriendList";
 import GroupTab from "../../components/GroupTab";
 import Navigation from "../../components/Navigation"; // Navigation 컴포넌트 불러오기
 import ShadowBox from "../../components/ShadowBox";
 
+// import timeTableData from "../../testdataset/testdata.json"; // JSON 파일 import
+import timeTableData from '../group/GroupDataApi'; // GroupDataApi import
+
 const GroupPage = () => {
   const { name } = useParams(); // 선택된 그룹 이름
   const [groupData, setGroupData] = useState(null);
+  const [selectedFriends, setSelectedFriends] = useState([]); // 체크된 멤버 상태 관리
 
+  /*
   useEffect(() => {
     // 선택된 그룹 데이터 가져오기
-    const group = timeTableData.groups[name];
+    const group = timeTableData.GroupDataApi.groups[name];
     if (group) {
       setGroupData(group);
+      setSelectedFriends(group.members); // 초기 상태: 모든 멤버 체크
     }
-  }, [name]);
+  }, [name]);*/
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await timeTableData.GroupDataApi(); // GroupDataApi 호출
+      setData(result); // 가져온 데이터를 상태에 저장
+    };
+
+    fetchData();
+  }, []);
 
   // 멤버들의 시간표만 필터링하여 전달
   const filteredTimeTableData = {};
   if (groupData) {
-    const { members } = groupData; // 그룹 멤버들
-    members.forEach((member) => {
+    selectedFriends.forEach((member) => {
       filteredTimeTableData[member] = timeTableData.timeTable[member];
     });
   }
@@ -55,7 +67,11 @@ const GroupPage = () => {
           {/* 오른쪽: FriendTable */}
           <div className="w-[30%] border-4 border-white bg-white m-2">
             <ShadowBox>
-              <GroupFriendList members={groupData ? groupData.members : []} />
+              <GroupFriendList
+                members={groupData ? groupData.members : []}
+                selectedFriends={selectedFriends} // 체크된 멤버 전달
+                setSelectedFriends={setSelectedFriends} // 체크 상태 업데이트 함수 전달
+              />
             </ShadowBox>
           </div>
         </div>

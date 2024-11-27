@@ -1,11 +1,6 @@
-import { useState } from "react";
-import TimespaceButton from "../../components/TimespaceButton";
-import ShadowBox from "../../components/ShadowBox";
+import React from "react";
 
-const FriendsList = ({ members }) => {
-
-  const [selectedFriends, setSelectedFriends] = useState([]);
-
+const GroupFriendList = ({ members, selectedFriends, setSelectedFriends, onAddFriends }) => {
   // 체크박스 상태 변경 핸들러
   const handleCheckboxChange = (name) => {
     setSelectedFriends((prevSelectedFriends) =>
@@ -17,29 +12,29 @@ const FriendsList = ({ members }) => {
 
   return (
     <div>
-      {/* Background border */}
       <div className="flex flex-col">
-        {/* Bottom Actions */}
+        {/* 버튼 영역 */}
         <div className="flex items-center justify-center m-3">
-          <ShadowBox>
-            <button>
-              그룹에 친구추가
-            </button>
-          </ShadowBox>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
+            onClick={onAddFriends}
+          >
+            그룹에 친구 추가
+          </button>
         </div>
 
-        {/* Friends List with Scroll */}
+        {/* 친구 목록 */}
         <div className="flex-1 overflow-y-auto" style={{ maxHeight: "calc(100vh - 180px)" }}>
           {members.map((name, index) => (
             <div key={name} className="relative flex items-center justify-center py-4 text-2xl text-black">
               {/* 체크박스 */}
               <input
                 type="checkbox"
-                className="w-6 h-6 mr-2"  // 체크박스 크기 조정과 오른쪽 마진 추가
+                className="w-6 h-6 mr-2"
                 checked={selectedFriends.includes(name)}
                 onChange={() => handleCheckboxChange(name)}
               />
-              <div className="flex items-center justify-center">{name}</div> {/* 이름 */}
+              <div className="flex items-center justify-center">{name}</div>
               {index !== members.length - 1 && (
                 <div className="absolute bottom-0 left-0 right-0 border-b-[3px] border-[#254D64]" />
               )}
@@ -56,4 +51,4 @@ const FriendsList = ({ members }) => {
   );
 };
 
-export default FriendsList;
+export default GroupFriendList;
