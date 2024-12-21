@@ -24,22 +24,21 @@ const ProfileTable = () => {
   const [timetableParentWidth, setTimetableParentWidth] = useState(0);
   const [cellHeight, setCellHeight] = useState(65);
 
-  useEffect(() => {
-    const getTimetableData = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchTimetable();
-        if (data) {
-          setTimetableData(data);
-        }
-      } catch (error) {
-        console.error("시간표 조회 에러:", error);
-        setTimetableData([]);
-      } finally {
+  const getTimetableData = async () => {
+    try {
+      setLoading(true);
+      const data = await fetchTimetable();
+      if (data) {
+        await setTimetableData(data);
         setLoading(false);
       }
-    };
+    } catch (error) {
+      console.error("시간표 조회 에러:", error);
+      setTimetableData([]);
+    }
+  };
 
+  useEffect(() => {
     getTimetableData();
   }, []);
 
@@ -58,9 +57,9 @@ const ProfileTable = () => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [timetableParent.current]);
+  }, [timetableParent.current, timetableData]);
 
-  if (loading) {
+  if (timetableData.length === 0) {
     return (
       <div className="relative h-full">
         <div className="absolute top-[11px] left-0 right-0 bottom-0 bg-[#254D64] rounded-[20px]" />
@@ -118,7 +117,7 @@ const ProfileTable = () => {
                   }}
                 >
                   <div
-                    className="text-xl absolute left-0 h-full flex items-center justify-center text-sm"
+                    className="text-lg absolute left-0 h-full flex items-center justify-center"
                     style={{
                       width: timetableParentWidth / 8,
                       borderRight: "1px solid #ccc",

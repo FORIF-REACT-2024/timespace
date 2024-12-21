@@ -58,13 +58,13 @@ const GroupPage = () => {
     : [];
 
   return (
-    <div className="flex flex-col h-screen overflow-y-auto">
+    <div className="flex flex-col">
       {/* 상단 네비게이션 바 */}
-      <div className="m-3">
+      {/* <div className="m-3">
         <ShadowBox>
           <Navigation />
         </ShadowBox>
-      </div>
+      </div> */}
 
       {/* 콘텐츠 영역 */}
       <div className="flex flex-1 flex-col">

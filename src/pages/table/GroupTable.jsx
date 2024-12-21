@@ -9,7 +9,7 @@ const GroupTable = ({ timeTableData, groupName, Edit }) => {
   return (
     <div>
       {/* 상단바 */}
-      <div className="flex items-center justify-between w-full max-w-5xl mb-4 px-4">
+      <div className="flex w-full max-w-5xl mb-4 px-4 gap-10">
         <h2 className="text-black text-2xl font-bold flex items-center space-x-2">
           <span>{groupName}</span>
           {/* 공유하기 이모티콘 추가 */}
@@ -37,20 +37,20 @@ const GroupTable = ({ timeTableData, groupName, Edit }) => {
       </div>
 
       {/* 시간표 테이블 */}
-      <div className="w-full max-w-5xl overflow-y-auto border border-gray-300" style={{ maxHeight: "calc(100vh - 180px)" }}>
+      <div className="w-full max-w-5xl border-t border-b overflow-y-auto border border-gray-300" style={{ maxHeight: "calc(100vh - 180px)" }}>
         <table className="table-fixed border-collapse w-full text-black">
           <thead>
             <tr>
-              <th className="border border-black px-4 py-2 w-1/8">시간</th>
+              <th className="border border-gray-300 bg-gray-100 px-4 py-2 w-1/8">시간</th>
               {days.map((day) => (
-                <th key={day} className="border border-black px-2 py-1 text-center w-1/8">{day}</th>
+                <th key={day} className="border border-gray-300 bg-gray-100 px-2 py-1 text-center w-1/8">{day}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {hourData.map((time) => (
               <tr key={time}>
-                <td className="border border-black px-2 py-1 text-center">{`${time}:00 - ${time + 1}:00`}</td>
+                <td className="border border-gray-300 bg-gray-100 px-2 py-1 text-center">{`${time}:00 - ${time + 1}:00`}</td>
                 <TimeTableRow
                   timeNum={time}
                   timeTableData={timeTableData}

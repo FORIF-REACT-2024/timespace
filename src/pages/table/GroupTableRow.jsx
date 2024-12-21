@@ -13,7 +13,7 @@ const backgroundColors = [
 
 // count에 따른 색상을 반환하는 함수
 const getBackgroundColor = (count) => {
-  if (count === 0) return "white"; // 데이터가 없을 경우 흰색 배경
+  if (count === 0) return "bg-gray-300"; // 데이터가 없을 경우 흰색 배경
   return backgroundColors[Math.min(count - 1, backgroundColors.length - 1)];
 };
 
@@ -63,7 +63,7 @@ function GroupTableRow({ timeNum, timeTableData }) {
           <td
             key={idx}
             rowSpan={data.rowSpan}
-            className="border border-black px-3 py-4 text-center relative"
+            className="border-t border-b border-gray-300 px-3 py-4 text-center relative"
             style={{
               backgroundColor: getBackgroundColor(data.count),
               height: data.rowSpan === 1 ? "70px" : undefined,
@@ -88,7 +88,7 @@ function GroupTableRow({ timeNum, timeTableData }) {
                 {/* namelist 툴팁 팝업 */}
                 {data.isFirstCell && popupIndex === idx && (
                   <div
-                    className={`absolute z-10 bg-white border border-gray-300 p-2 rounded shadow-lg ${
+                    className={`absolute z-10 bg-white border border-gray-300 p-2 rounded shadow-lg border-t border-b ${
                       isPopupPinned ? "ring ring-blue-500" : ""
                     }`}
                     style={{

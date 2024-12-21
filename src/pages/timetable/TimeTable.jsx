@@ -122,7 +122,7 @@ const Timetable = () => {
         />
       )}
 
-      <ShadowBox width="w-3/4 max-w-4xl" padding="p-6">
+      <ShadowBox width="w-3/4 max-w-6xl" padding="p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl text-black font-bold">내 시간표</h2>
           <div className="flex items-center space-x-4">
@@ -157,7 +157,7 @@ const Timetable = () => {
             {days.map((day) => (
               <div
                 key={day}
-                className="flex flex-1 items-center justify-center border-r border-gray-300 text-black font-semibold bg-gray-100"
+                className="flex flex-1 items-center justify-center border-r border-gray-300 text-black font-semibold bg-gray-100 text-xl"
               >
                 {day}
               </div>
@@ -169,11 +169,11 @@ const Timetable = () => {
             {timeLabels.map((time) => (
               <div
                 key={time}
-                className="relative flex items-center border-b border-gray-300 text-black bg-white-200"
+                className="relative flex items-center border-b border-gray-300 text-black bg-white"
                 style={{ height: "46px", fontSize: "12px" }} // 폰트 크기 조정 및 배경색 설정
               >
                 <div
-                  className="absolute left-0 h-full flex items-center justify-center"
+                  className="absolute left-0 h-full flex items-center justify-center text-lg"
                   style={{
                     borderRight: "1px solid #ccc",
                     backgroundColor: "#f3f3f3", // 추가로 회색 강조
@@ -197,7 +197,7 @@ const Timetable = () => {
             return (
               <div
                 key={index}
-                className={` absolute text-black text-sm flex justify-center items-center ${subject.color}`} // 색상 적용
+                className={` absolute text-black text-sm flex justify-center items-center ${subject.color} text-xl`} // 색상 적용
                 style={{
                   top: `${startTop + 40}px`, // 상단 요일 헤더 높이 보정
                   left: `${

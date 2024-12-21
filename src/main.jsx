@@ -69,20 +69,18 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        theme="dark"
-        transition={Slide}
-      />
-      <RouterProvider router={router} />
-    </div>
-  </StrictMode>
+  <div>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      theme="dark"
+      transition={Slide}
+    />
+    <RouterProvider router={router} />
+  </div>
 );
