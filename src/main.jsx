@@ -1,10 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
 // 토스트 알림 띄우기 위해 쓰는 라이브러리
@@ -17,7 +13,7 @@ import GroupPage from "./pages/group/GroupPages.jsx";
 import Mypage from "./pages/mypage/MyPage.jsx";
 import TimeTable from "./pages/timetable/TimeTable.jsx";
 import ProfilePage from "./pages/profile/ProfilePage.jsx";
-import ApiTest from "./pages/group/APITest.jsx";
+//import ApiTest from "./pages/group/APITest.jsx";
 
 import { tokenLoader } from "./loader/tokenLoader.js";
 
@@ -62,10 +58,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/apitest/",
-    element: <ApiTest />,
-  },
+  // {
+  //   path: "/apitest/",
+  //   element: <ApiTest />,
+  // },
 ]);
 
 createRoot(document.getElementById("root")).render(
